@@ -11,9 +11,3 @@ export class OrderDTO {
     ];
   };
 }
-
-type ItemT = {
-  name: string;
-  quantity: number;
-  price: number;
-};

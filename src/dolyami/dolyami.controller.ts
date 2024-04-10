@@ -9,8 +9,6 @@ export class DolyamiController {
   @Post('create')
   @HttpCode(200)
   async create(@Body() data: OrderDTO): Promise<any> {
-    console.log(data);
-    return data;
     return this.dolyamiService.createOrder(data);
   }
 }
