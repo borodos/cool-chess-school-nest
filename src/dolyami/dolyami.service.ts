@@ -20,11 +20,7 @@ export class DolyamiService {
   async createOrder(data) {
     const responseData = await firstValueFrom(
       this.httpService
-        .post(
-          'https://partner.dolyame.ru/v1/orders/create',
-          JSON.stringify(data),
-          config,
-        )
+        .post('https://partner.dolyame.ru/v1/orders/create', data, config)
         .pipe(
           map((response) => {
             return response.data;

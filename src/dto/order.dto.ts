@@ -1,10 +1,16 @@
-export type OrderDTO = {
+export class OrderDTO {
   order: {
     id: string;
     amount: number;
-    items: Array<ItemT>;
+    items: [
+      {
+        name: string;
+        quantity: number;
+        price: number;
+      },
+    ];
   };
-};
+}
 
 type ItemT = {
   name: string;
