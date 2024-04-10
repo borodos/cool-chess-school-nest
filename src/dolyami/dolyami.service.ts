@@ -1,5 +1,6 @@
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Injectable, Logger } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
+import { randomUUID } from 'crypto';
 import { catchError, firstValueFrom, map } from 'rxjs';
 import configHeadersDolyami from 'src/utils/configHeadersDolyami';
 
@@ -8,13 +9,18 @@ export class DolyamiService {
   constructor(private readonly httpService: HttpService) {}
 
   async createOrder(data) {
+    const uuid = randomUUID();
+    const config = {
+      ...configHeadersDolyami,
+      headers: {
+        ...configHeadersDolyami.headers,
+        'X-Correlation-ID': uuid,
+      },
+    };
+
     const responseData = await firstValueFrom(
       this.httpService
-        .post(
-          'https://partner.dolyame.ru/v1/orders/create',
-          data,
-          configHeadersDolyami,
-        )
+        .post('https://partner.dolyame.ru/v1/orders/create', data, config)
         .pipe(
           map((response) => {
             return response.data;
