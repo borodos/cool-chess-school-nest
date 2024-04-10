@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { HttpService } from '@nestjs/axios';
 import { InternalServerErrorException } from '@nestjs/common';
+import cors from 'cors';
 
 async function bootstrap() {
   const httpService = new HttpService();
@@ -24,11 +25,12 @@ async function bootstrap() {
     next();
   });
 
-  app.enableCors({
-    allowedHeaders: '*',
-    origin: '*',
-    credentials: true,
-  });
+  app.use(
+    cors({
+      credentials: true,
+      origin: true,
+    }),
+  );
 
   await app.listen(3000);
 }
