@@ -4,23 +4,27 @@ import { randomUUID } from 'crypto';
 import { catchError, firstValueFrom, map } from 'rxjs';
 import configHeadersDolyami from 'src/utils/configHeadersDolyami';
 
+const uuid = randomUUID();
+const config = {
+  ...configHeadersDolyami,
+  headers: {
+    ...configHeadersDolyami.headers,
+    'X-Correlation-ID': uuid,
+  },
+};
+
 @Injectable()
 export class DolyamiService {
   constructor(private readonly httpService: HttpService) {}
 
   async createOrder(data) {
-    const uuid = randomUUID();
-    const config = {
-      ...configHeadersDolyami,
-      headers: {
-        ...configHeadersDolyami.headers,
-        'X-Correlation-ID': uuid,
-      },
-    };
-
     const responseData = await firstValueFrom(
       this.httpService
-        .post('https://partner.dolyame.ru/v1/orders/create', data, config)
+        .post(
+          'https://partner.dolyame.ru/v1/orders/create',
+          JSON.stringify(data),
+          config,
+        )
         .pipe(
           map((response) => {
             return response.data;
