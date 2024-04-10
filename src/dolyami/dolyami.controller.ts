@@ -7,6 +7,7 @@ export class DolyamiController {
 
   @Post('/create')
   create(@Body() data) {
+    return data;
     return this.dolyamiService.createOrder(data);
   }
 }
