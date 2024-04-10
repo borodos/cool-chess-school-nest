@@ -8,6 +8,6 @@ export class DolyamiController {
 
   @Post('create')
   async create(@Body() data: OrderDTO) {
-    return this.dolyamiService.createOrder(data);
+    return await this.dolyamiService.createOrder(data);
   }
 }
