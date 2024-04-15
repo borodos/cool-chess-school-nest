@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Res } from '@nestjs/common';
 import { DolyamiService } from './dolyami.service';
 import { OrderDTO } from 'src/dto/order.dto';
 import axios from 'axios';
