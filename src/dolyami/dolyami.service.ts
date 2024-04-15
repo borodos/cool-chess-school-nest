@@ -26,6 +26,7 @@ export class DolyamiService {
             const resultData = {
               ...response.data,
               uuid: uuid,
+              orderId: data.order.id,
             };
             return resultData;
           }),
