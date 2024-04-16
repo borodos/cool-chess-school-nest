@@ -1,7 +1,14 @@
-import { Body, Controller, Get, HttpCode, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { DolyamiService } from './dolyami.service';
 import { OrderDTO } from 'src/dto/order.dto';
-import axios from 'axios';
 
 @Controller('dolyami')
 export class DolyamiController {
@@ -11,5 +18,11 @@ export class DolyamiController {
   @HttpCode(200)
   async create(@Body() data: OrderDTO) {
     return this.dolyamiService.createOrder(data);
+  }
+
+  @Get('orders/:id/info/')
+  @HttpCode(200)
+  async getInfo(@Param() param) {
+    return this.dolyamiService.getInfoOrder(param);
   }
 }

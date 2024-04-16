@@ -38,4 +38,34 @@ export class DolyamiService {
 
     return responseData;
   }
+
+  async getInfoOrder(param) {
+    const uuid = randomUUID();
+    const config = {
+      ...configHeadersDolyami,
+      headers: {
+        ...configHeadersDolyami.headers,
+        'X-Correlation-ID': uuid,
+      },
+    };
+
+    const responseData = await firstValueFrom(
+      this.httpService
+        .get(`https://partner.dolyame.ru/v1/orders/${param.id}/info`, config)
+        .pipe(
+          map((response) => {
+            const resultData = {
+              ...response.data,
+              uuid: uuid,
+            };
+            return resultData;
+          }),
+          catchError((error) => {
+            throw new HttpException(error.response.data, error.response.status);
+          }),
+        ),
+    );
+
+    return responseData;
+  }
 }
