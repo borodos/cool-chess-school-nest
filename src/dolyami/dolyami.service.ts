@@ -1,12 +1,17 @@
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Injectable, Redirect } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { catchError, firstValueFrom, map } from 'rxjs';
 import configHeadersDolyami from 'src/utils/configHeadersDolyami';
+import sendMailOptions from 'src/utils/email/sendMailOptions';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class DolyamiService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(
+    private readonly httpService: HttpService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   async createOrder(data) {
     const uuid = randomUUID();
@@ -67,5 +72,14 @@ export class DolyamiService {
     );
 
     return responseData;
+  }
+
+  async sendEmail() {
+    this.mailerService
+      .sendMail(sendMailOptions)
+      .then((res) => res)
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  HttpCode,
-  Param,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post } from '@nestjs/common';
 import { DolyamiService } from './dolyami.service';
 import { OrderDTO } from 'src/dto/order.dto';
 
@@ -24,5 +16,11 @@ export class DolyamiController {
   @HttpCode(200)
   async getInfo(@Param() param) {
     return this.dolyamiService.getInfoOrder(param);
+  }
+
+  @Get('email')
+  @HttpCode(200)
+  async sendEmail() {
+    return this.dolyamiService.sendEmail();
   }
 }
