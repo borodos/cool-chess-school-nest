@@ -18,7 +18,7 @@ export class DolyamiController {
     return this.dolyamiService.getInfoOrder(param);
   }
 
-  @Get('email')
+  @Post('email')
   @HttpCode(200)
   async sendEmail() {
     return this.dolyamiService.sendEmail();
