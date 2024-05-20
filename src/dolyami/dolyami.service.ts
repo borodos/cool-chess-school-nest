@@ -1,10 +1,12 @@
+import configHeadersDolyami from 'src/utils/configHeadersDolyami';
+import sendMailOptions from 'src/utils/email/sendMailOptions';
+import { MailerService } from '@nestjs-modules/mailer';
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { catchError, firstValueFrom, map } from 'rxjs';
-import configHeadersDolyami from 'src/utils/configHeadersDolyami';
-import sendMailOptions from 'src/utils/email/sendMailOptions';
-import { MailerService } from '@nestjs-modules/mailer';
+
+// import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class DolyamiService {
