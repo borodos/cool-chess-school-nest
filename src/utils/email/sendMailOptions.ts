@@ -6,8 +6,8 @@ type TSendMailOptions = {
 };
 
 const sendMailOptions: TSendMailOptions = {
-  to: 'micke.brown@yandex.ru',
-  from: 'elmar_2005@mail.ru',
+  to: 'elmar_2005@mail.ru',
+  from: 'coolchess_online@mail.ru',
   subject: 'Test',
 };
 
