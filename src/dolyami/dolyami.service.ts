@@ -1,12 +1,11 @@
+import './test.json';
 import configHeadersDolyami from 'src/utils/configHeadersDolyami';
-import sendMailOptions from 'src/utils/email/sendMailOptions';
 import { MailerService } from '@nestjs-modules/mailer';
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
+import { PathOrFileDescriptor, readFile, readFileSync } from 'fs';
 import { catchError, firstValueFrom, map } from 'rxjs';
-
-// import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class DolyamiService {
@@ -77,8 +76,16 @@ export class DolyamiService {
   }
 
   async sendEmail() {
+    const result = readFileSync('./test.json', 'utf8');
+
+    return result;
     this.mailerService
-      .sendMail(sendMailOptions)
+      .sendMail({
+        to: 'micke.brown@yandex.ru',
+        from: 'coolchess_online@mail.ru',
+        subject: 'Test',
+        template: 'message',
+      })
       .then((res) => res)
       .catch((err) => {
         console.log(err);

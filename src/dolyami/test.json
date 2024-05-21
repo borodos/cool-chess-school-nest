@@ -1,0 +1,44 @@
+{
+  "id": "3213",
+  "demo": true,
+  "amount": 1000,
+  "residual_amount": 750,
+  "payment_schedule": [
+    {
+      "amount": 250,
+      "payment_date": "2024-05-22",
+      "status": "paid"
+    },
+    {
+      "amount": 250,
+      "payment_date": "2024-06-05",
+      "status": "scheduled"
+    },
+    {
+      "amount": 250,
+      "payment_date": "2024-06-19",
+      "status": "scheduled"
+    },
+    {
+      "amount": 250,
+      "payment_date": "2024-07-03",
+      "status": "scheduled"
+    }
+  ],
+  "client_info": {
+    "first_name": "Ааа",
+    "last_name": "А.",
+    "middle_name": "Ааа",
+    "birthdate": "1999-12-12",
+    "phone": "+79000000000",
+    "email": "a**@g****.com"
+  },
+  "items": [
+    {
+      "name": "item_name",
+      "quantity": 1,
+      "price": 1000
+    }
+  ],
+  "status": "completed"
+}

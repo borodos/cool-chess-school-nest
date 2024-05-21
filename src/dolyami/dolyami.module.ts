@@ -1,11 +1,11 @@
 import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { HttpModule } from '@nestjs/axios/dist';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { join } from 'path';
 import { DolyamiController } from './dolyami.controller';
 import { DolyamiService } from './dolyami.service';
-
-// import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -26,6 +26,13 @@ import { DolyamiService } from './dolyami.service';
           auth: {
             user: configService.get('EMAIL_ID'),
             pass: configService.get('EMAIL_PASS'),
+          },
+        },
+        template: {
+          dir: join(process.cwd(), 'src/dolyami/templates'),
+          adapter: new HandlebarsAdapter(),
+          options: {
+            strict: true,
           },
         },
       }),
