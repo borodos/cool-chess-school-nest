@@ -20,7 +20,7 @@ export class DolyamiController {
 
   @Post('email')
   @HttpCode(200)
-  async sendEmail() {
-    return this.dolyamiService.sendEmail();
+  async sendEmail(@Body() data) {
+    return this.dolyamiService.sendEmail(data);
   }
 }
